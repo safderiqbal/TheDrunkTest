@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO.Ports;
 
-namespace DrunkCheck.Models
+namespace DrunkCheckClient
 {
     public class ArduinoInterface : IDisposable
     {
