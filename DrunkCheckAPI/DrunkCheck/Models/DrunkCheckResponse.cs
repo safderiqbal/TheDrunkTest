@@ -9,7 +9,7 @@
         public int value;
 
         // ReSharper disable once InconsistentNaming
-        public string username;
+        public User user;
         
         public DrunkCheckResponse()
         {
@@ -22,9 +22,9 @@
             success = true;
         }
 
-        public DrunkCheckResponse(string username, int reading)
+        public DrunkCheckResponse(User user, int reading)
         {
-            this.username = username;
+            this.user = user;
             value = reading;
             success = true;
         }

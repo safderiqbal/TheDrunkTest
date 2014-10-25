@@ -45,5 +45,16 @@ namespace DrunkCheck.Controllers
 
             return Json(user, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetResultsForUser(int userId)
+        {
+            List<Reading> readings;
+            using (DrunkCheckerContext db = new DrunkCheckerContext())
+            {
+                readings = db.Readings.Where(r => r.UserId == userId).ToList();
+            }
+
+            return Json(readings, JsonRequestBehavior.AllowGet);
+        }
     }
 }

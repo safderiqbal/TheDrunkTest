@@ -32,7 +32,7 @@ namespace DrunkCheck.Models
             return WebSocket.State == WebSocketState.Open;
         }
 
-        public static DrunkCheckResponse Read(string username = null)
+        public static DrunkCheckResponse Read(User user = null)
         {
             lock (LockObject)
             {
@@ -49,7 +49,7 @@ namespace DrunkCheck.Models
                 ArraySegment<byte> arraySegment = new ArraySegment<byte>(bytes);
                 WebSocket.ReceiveAsync(arraySegment, CancellationToken.None).Wait();
 
-                return new DrunkCheckResponse(username, BitConverter.ToInt32(bytes, 0));
+                return new DrunkCheckResponse(user, BitConverter.ToInt32(bytes, 0));
             }
         }
     }
