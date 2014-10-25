@@ -26,6 +26,7 @@
         {
             this.username = username;
             value = reading;
+            success = true;
         }
     }
 }
