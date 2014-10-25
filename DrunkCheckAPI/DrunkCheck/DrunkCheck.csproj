@@ -91,7 +91,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410251836146_InitialCreate.cs" />
+    <Compile Include="Migrations\201410251836146_InitialCreate.Designer.cs">
+      <DependentUpon>201410251836146_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410252119089_test.cs" />
+    <Compile Include="Migrations\201410252119089_test.Designer.cs">
+      <DependentUpon>201410252119089_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410252121451_test1.cs" />
+    <Compile Include="Migrations\201410252121451_test1.Designer.cs">
+      <DependentUpon>201410252121451_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DrunkCheckResponse.cs" />
+    <Compile Include="Models\Reading.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -117,6 +131,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410251836146_InitialCreate.resx">
+      <DependentUpon>201410251836146_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410252119089_test.resx">
+      <DependentUpon>201410252119089_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410252121451_test1.resx">
+      <DependentUpon>201410252121451_test1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

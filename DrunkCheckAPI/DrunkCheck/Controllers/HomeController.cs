@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using DrunkCheck.Models;
@@ -25,6 +26,33 @@ namespace DrunkCheck.Controllers
             return Json(new DrunkCheckResponse(username, returnValue), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ReadForUserEmail(string email, int returnValue = -1)
+        {
+            if (returnValue == -1)
+            {
+                returnValue = Random.Next(100, 400);
+            }
+
+            using (DrunkCheckerContext db = new DrunkCheckerContext())
+            {
+                User user = db.Users.FirstOrDefault(u => u.Email == email);
+
+                if (user == null)
+                {
+                    return Json("{success : fail, Value : This User does not exist.}");
+                }
+
+                Reading reading = new Reading {UserId = user.Id, DateTime = DateTime.Now, Value = returnValue};
+
+                db.Readings.Add(reading);
+
+                db.SaveChanges();
+            }
+
+            return Json("{success : true}", JsonRequestBehavior.AllowGet);
+
+        }
+        
         public JsonResult BensTest(string username, string email)
         {
             using (DrunkCheckerContext db = new DrunkCheckerContext())
