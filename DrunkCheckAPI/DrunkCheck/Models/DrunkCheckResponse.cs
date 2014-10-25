@@ -3,10 +3,10 @@
     public class DrunkCheckResponse
     {
         // ReSharper disable once InconsistentNaming
-        protected bool success;
+        public bool success;
 
         // ReSharper disable once InconsistentNaming
-        protected int value;
+        public int value;
         
         public DrunkCheckResponse()
         {
