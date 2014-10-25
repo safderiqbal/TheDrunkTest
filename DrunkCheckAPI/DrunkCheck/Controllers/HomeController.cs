@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Web.Mvc;
 using DrunkCheck.Models;
 
@@ -22,6 +23,19 @@ namespace DrunkCheck.Controllers
                 returnValue = staticValue ? 100 : Random.Next(100, 400);
 
             return Json(new DrunkCheckResponse(username, returnValue), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult BensTest(string username, string email)
+        {
+            using (DrunkCheckerContext db = new DrunkCheckerContext())
+            {
+                User user = new User{Email = "example@example.com", Name = "example"};
+                db.Users.Add(user);
+
+                db.SaveChanges();
+            }
+
+            return Json("{success : true}");
         }
     }
 }

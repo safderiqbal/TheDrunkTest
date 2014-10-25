@@ -18,4 +18,6 @@ URL - http://drunkchecker.azurewebsites.net/
 
 /ReadForUser?username=[something]&returnValue=[something]&staticValue=[something]		Same, but will return a username as well.
 
+/User/CreateUser?name=[something]&email=[something]					Will create a new user and return the id.
+
 ===========================================================
