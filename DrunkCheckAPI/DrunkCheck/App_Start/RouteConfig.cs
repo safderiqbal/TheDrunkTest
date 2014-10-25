@@ -10,9 +10,15 @@ namespace DrunkCheck
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Default", 
+                "Action",
+                "{action}",
+                new { controller = "Home", action = "Read" }
+            );
+
+            routes.MapRoute(
+                "ControllerAction", 
                 "{controller}/{action}", 
-                new { controller = "Arduino", action = "Read" }
+                new { controller = "Home", action = "Read" }
             );
         }
     }

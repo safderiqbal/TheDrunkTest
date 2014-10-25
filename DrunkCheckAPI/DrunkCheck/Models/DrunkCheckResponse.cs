@@ -7,6 +7,9 @@
 
         // ReSharper disable once InconsistentNaming
         public int value;
+
+        // ReSharper disable once InconsistentNaming
+        public string username;
         
         public DrunkCheckResponse()
         {
@@ -17,6 +20,12 @@
         {
             value = reading;
             success = true;
+        }
+
+        public DrunkCheckResponse(string username, int reading)
+        {
+            this.username = username;
+            value = reading;
         }
     }
 }
