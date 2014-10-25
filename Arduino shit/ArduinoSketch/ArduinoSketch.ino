@@ -14,11 +14,16 @@ int currentReading = 0;
 int startedRead = 0;
 int lastLevel = 0;
 
+long elapsedTime = 0;
+long startTime = 0;
+
 LED_Bar bar(9, 8);
 
 void setup()
 {
     Serial.begin(9600);                         // open the serial port at 9600 bps
+    bar.setLevel(0);
+    digitalWrite(2, LOW);
 }
 
 void loop()
@@ -43,6 +48,21 @@ void loop()
   
   if(readyForRead == 1 && buttonState == 1)
   {
+      if (startedRead == 0)
+      {
+        startTime = millis();  
+      }
+      else
+      {
+        elapsedTime = millis() - startTime;
+      }
+      
+      if (elapsedTime >= 5000)
+      {
+        ringBuzzer(); 
+        
+      }
+    
       currentReading = analogRead(analogInDatPin);
       
       if(currentReading > maxReading){
@@ -73,4 +93,12 @@ void flickerLeds()
     lastLevel = 0;
   }
   delay(1000);
+}
+
+void ringBuzzer()
+{
+  digitalWrite(2, HIGH);
+  delay(500);
+  digitalWrite(2, LOW);
+  elapsedTime = 0;
 }
