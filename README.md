@@ -20,7 +20,10 @@ URL - http://drunkchecker.azurewebsites.net/
 
 /User/CreateUser?name=[something]&email=[something]					Will create a new user and return the id.
 
-/ReadForUserEmail?email=[something]&returnValue=[somethingifyouwant]	Doesn't require returnValue
+/User/GetUser?userId=[something]				Returns the User object
+/User/GetUser?email=[something]				Returns the User object
+
+/ReadForUserEmail?email=[something]					Doesn't require returnValue
 
 /GetResultsForUser?userId=[something]				Will return all reading for a user
 

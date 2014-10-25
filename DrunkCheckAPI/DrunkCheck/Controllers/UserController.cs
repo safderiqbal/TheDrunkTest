@@ -9,7 +9,6 @@ namespace DrunkCheck.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
         public JsonResult CreateUser(string name, string email)
         {
             User user;
@@ -26,7 +25,25 @@ namespace DrunkCheck.Controllers
                 db.SaveChanges();
             }
 
-            return Json("{success : true, userId : " + user.Id + "}", JsonRequestBehavior.AllowGet);
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetUser(int userId = -1, string email = null)
+        {
+
+            if (userId == -1 && email == null)
+            {
+                return Json("{success : false}", JsonRequestBehavior.AllowGet);
+            }
+
+            User user;
+            using (DrunkCheckerContext db = new DrunkCheckerContext())
+            {
+                user = userId != -1 ? db.Users.FirstOrDefault(u => u.Id == userId) : db.Users.FirstOrDefault(u => u.Email == email);
+                
+            }
+
+            return Json(user, JsonRequestBehavior.AllowGet);
         }
     }
 }
