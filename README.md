@@ -8,3 +8,14 @@ TheDrunkTest
 
 Git hook
 	To use the git hook
+
+
+
+===========================================================
+URL - http://drunkchecker.azurewebsites.net/
+
+/Read?returnValue=[something]&staticValue=[something]						Will return whatever "returnValue" you send it, or 100 if staticValue=true
+
+/ReadForUser?username=[something]&returnValue=[something]&staticValue=[something]		Same, but will return a username as well.
+
+===========================================================
