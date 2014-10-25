@@ -20,9 +20,9 @@
       "38": "images/icon-38.png"
     },
     "default_title": "TheDrunkTest",
-    "default_popup": "popup.html"
+    "default_popup": "views/popup.html"
   },
-  "options_page": "options.html",
+  "options_page": "views/options.html",
   "content_scripts": [
     {
       "matches": [
@@ -33,10 +33,44 @@
         "styles/main.css"
       ],
       "js": [
-        "scripts/contentscript.js"
+        "bower_components/jquery/dist/jquery.js",
+        "scripts/extension-core.js"
       ],
       "run_at": "document_end",
       "all_frames": false
+    },
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "css": [
+        "styles/main.css"
+      ],
+      "js": [
+        "scripts/social-media/facebook.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "*://*.rbs.co.uk/*",
+        "*://*.rbsdigital.com/*"
+      ],
+      "css": [
+        "styles/main.css",
+        "styles/overlay.css"
+      ],
+      "js": [
+        "bower_components/angularjs/angular.js",
+        "scripts/banking/banking.js",
+        "views/overlay.tpl.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false,
+      "web_accessible_resources": [
+        "images/overlay-bg.jpg",
+        "images/overlay-bg2.png",
+        "images/signal.png"
+      ]
     }
   ]
 }
