@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -51,6 +52,18 @@ namespace DrunkCheck.Controllers
 
             return Json("{success : true}", JsonRequestBehavior.AllowGet);
 
+        }
+
+        public JsonResult GetResultsForUser(int userId)
+        {
+
+            List<Reading> readings;
+            using (DrunkCheckerContext db = new DrunkCheckerContext())
+            {
+                readings = db.Readings.Where(r => r.UserId == userId).ToList();
+            }
+
+            return Json(readings, JsonRequestBehavior.AllowGet);
         }
         
         public JsonResult BensTest(string username, string email)

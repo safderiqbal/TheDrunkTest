@@ -22,4 +22,6 @@ URL - http://drunkchecker.azurewebsites.net/
 
 /ReadForUserEmail?email=[something]&returnValue=[somethingifyouwant]	Doesn't require returnValue
 
+/GetResultsForUser?userId=[something]				Will return all reading for a user
+
 ===========================================================
