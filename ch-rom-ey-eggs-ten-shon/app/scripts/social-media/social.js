@@ -16,7 +16,8 @@ chrome.storage.sync.get('id', function (value) {
 
     $http.get('https://drunkchecker.azurewebsites.net/ReadForUser', {
       params: {
-        id: value.id
+        id: value.id,
+        notifyIce: true
       }
     }).then(function (result) {
       console.log(result);
