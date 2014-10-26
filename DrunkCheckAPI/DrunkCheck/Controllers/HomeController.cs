@@ -37,7 +37,7 @@ namespace DrunkCheck.Controllers
                 db.SaveChanges();
             }
 
-            string notificationSent = "";
+            bool notificationSent = false;
 
             if (notifySupervisor && user.SupervisorId >= 0 && reading.Value > 400)
             {
@@ -49,8 +49,6 @@ namespace DrunkCheck.Controllers
                                  response.drunkLevel + "'. What a tit";
 
                 notificationSent = ClockWorkSms.SendMessage(supervisor.Mobile, message);
-
-                return Json("{Success : " + supervisor.Mobile + "}", JsonRequestBehavior.AllowGet);
             }
 
             return Json(response, JsonRequestBehavior.AllowGet);
