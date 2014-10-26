@@ -11,20 +11,22 @@ Git hook
 
 
 
-===========================================================
+==========================================================================================================
 URL - http://drunkchecker.azurewebsites.net/
 
-/Read?returnValue=[something]&staticValue=[something]						Will return whatever "returnValue" you send it, or 100 if staticValue=true
+DrunkCheckResponse exposes success, value, user.
 
-/ReadForUser?username=[something]&returnValue=[something]&staticValue=[something]		Same, but will return a username as well.
+/Read 														Will return a DrunkCheckResponse object
 
-/User/CreateUser?name=[something]&email=[something]					Will create a new user and return the id.
+/ReadForUser?id=[something]									Will return a DrunkCheckResponse object
+/ReadForUser?email=[something]
 
-/User/GetUser?userId=[something]				Returns the User object
-/User/GetUser?email=[something]				Returns the User object
+/User/CreateUser?name=[something]&email=[something]			Will return a User object.
 
-/ReadForUserEmail?email=[something]					Doesn't require returnValue
+/User/GetUser?userId=[something]							Will return a User object.
+/User/GetUser?email=[something]								Will return a User object.
 
-/GetResultsForUser?userId=[something]				Will return all reading for a user
+/User/GetResultsForUser?userId=[something]					Will return a Json array of Reading objects
 
-===========================================================
+============================================================================================================
+

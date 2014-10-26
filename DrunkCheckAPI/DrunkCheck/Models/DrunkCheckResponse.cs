@@ -6,6 +6,7 @@
         public bool success;
         public int value;
         public User user;
+        public DrunkLevel drunkLevel; 
         public string errorMessage;
         // ReSharper restore InconsistentNaming
         
@@ -18,6 +19,7 @@
         public DrunkCheckResponse(int reading)
         {
             value = reading;
+            drunkLevel = DrunkChecker.HowDrunk(reading);
             success = true;
         }
 
@@ -25,6 +27,7 @@
         {
             this.user = user;
             value = reading;
+            drunkLevel = DrunkChecker.HowDrunk(reading);
             success = true;
         }
     }
