@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using DrunkCheck.Models;
 using DrunkCheckUser = DrunkCheck.Models.User;
 using DrunkCheck.APIs;
@@ -8,6 +10,31 @@ namespace DrunkCheck.Controllers
 {
     public class HomeController : Controller
     {
+        readonly string[] _insults = {
+            "numpty",
+            "tit",
+            "idiot",
+            "wazzok",
+            "noob",
+            "utter genius",
+            "pillock",
+            "goon",
+            "stooge",
+            "dummy",
+            "fool",
+            "jive turkey"
+        };
+
+        private readonly string[] _stopSayings =
+        {
+            "STAPPPP",
+            "NO! NOOOOOOOOOO! NO GOD NO!",
+            "Just step away from the computer device...",
+            "STOP! Hammer time!",
+            "STOP! Collaborate and listen. Ice is back...",
+            "MOVE AWAY FROM THE KEYBOARD"
+        };
+
         public JsonResult Read()
         {
             return Json(DrunkCheckInterface.Read(), JsonRequestBehavior.AllowGet);
@@ -36,21 +63,26 @@ namespace DrunkCheck.Controllers
                 db.SaveChanges();
             }
 
+            // Gen a random number generator for the placeholder text
+            Random random = new Random(Guid.NewGuid().GetHashCode());
+
             if (notifySupervisor && user.SupervisorId >= 0 && reading.Value > 400)
             {
                 User supervisor = DrunkCheckUser.Get(user.SupervisorId);
 
                 //nope.avi
-                String message = "Hi " + supervisor.Name + ", " + user.Name +
+                String message = String.Format("Hi " + supervisor.Name + ", " + user.Name +
                                  " is trying to commit code while in the state of '" +
-                                 response.drunkLevel + "'. What a tit";
-
+                                 response.drunkLevel + "'. What a {0}", _insults.GetValue(random.Next() * _insults.Length)); ;
+                
                 ClockWorkSms.SendMessage(supervisor.Mobile, message);
             }
 
             if (textSelf && reading.Value > 400)
             {
-                ClockWorkSms.SendMessage(user.Mobile, "STAPPPP");
+                ClockWorkSms.SendMessage(user.Mobile,
+                    String.Format("{0}", _stopSayings.GetValue(random.Next() * _stopSayings.Length))
+                );
             }
 
             return Json(response, JsonRequestBehavior.AllowGet);
