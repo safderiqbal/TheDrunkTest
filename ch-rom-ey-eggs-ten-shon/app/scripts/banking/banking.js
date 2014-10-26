@@ -21,8 +21,8 @@ chrome.storage.sync.get('id', function (value) {
       // setup the angular app
       $('body').attr('ng-app', 'thedrunktest');
 
-      if (result.data.success && result.data.drunkLevel > 0) {
-        // you're too drunk -> show overlay.
+      if (result.data.success /*&& result.data.drunkLevel > 0*/) {
+      // you're too drunk -> show overlay.
         console.log("you pisshead! reading: " + result.data.value);
 
         // remove everything on page
@@ -33,7 +33,7 @@ chrome.storage.sync.get('id', function (value) {
           $rootScope = angular.injector(['ng']).get('$rootScope'),
           overlayElement = $compile('<div overlay=""></div>')($rootScope.$new());
 
-        // add our custom splash overlay
+        //add our custom splash overlay
         $('body').append(overlayElement);
       } else {
         // you're sober, congrats. tell them.

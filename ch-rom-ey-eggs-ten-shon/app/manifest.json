@@ -46,13 +46,10 @@
         "*://twitter.com/*"
       ],
       "css": [
-        "styles/main.css",
-        "styles/clippy.css"
+        "styles/main.css"
       ],
       "js": [
         "bower_components/angularjs/angular.js",
-        "bower_components/jquery/dist/jquery.js",
-        "scripts/social-media/clippy.js",
         "scripts/social-media/social.js"
       ],
       "run_at": "document_end",
