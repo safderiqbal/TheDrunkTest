@@ -26,7 +26,7 @@ chrome.storage.sync.get('id', function (value) {
       console.log(result);
 
 
-      if (result.data.success /*&& result.data.drunkLevel > 0*/) {
+      if (result.data.success && result.data.drunkLevel > 0) {
       // you're too drunk -> show overlay.
         console.log("you pisshead! reading: " + result.data.value);
 
