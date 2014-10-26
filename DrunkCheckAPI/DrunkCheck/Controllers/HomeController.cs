@@ -13,10 +13,17 @@ namespace DrunkCheck.Controllers
             return Json(DrunkCheckInterface.Read(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ReadForUser(int id = -1, string email = null, bool notifySupervisor = false, bool textSelf = false)
+        public JsonResult ReadForUser(int id = -1, string email = null, 
+                                        bool notifySupervisor = false, bool textSelf = false, bool notifyIce = false)
         {
             User user = DrunkCheckUser.Get(id, email);
             DrunkCheckResponse response = DrunkHelpers.Read(user, notifySupervisor, textSelf);
+            if (notifyIce && reading.Value > 400)
+            {
+                ClockWorkSms.SendMessage(user.EmergancyContact,
+                    string.Format("Erm...{0}, has tried to do stupid stuff while drunk. Please stop them."), user.Name);
+            }
+
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 

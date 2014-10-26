@@ -3,8 +3,14 @@ angular.module('thedrunktest', []).directive('overlay', function () {
     templateUrl: 'overlay.html'
   };
 });
+// setup the angular app
+$('body').attr('ng-app', 'thedrunktest');
 
 var $http = angular.injector(['ng']).get('$http');
+var $compile = angular.injector(['ng']).get('$compile'),
+  $rootScope = angular.injector(['ng']).get('$rootScope'),
+  overlayElement = $compile('<div overlay=""></div>')($rootScope.$new());
+
 
 chrome.storage.sync.get('id', function (value) {
   console.log(value.id);
@@ -18,22 +24,17 @@ chrome.storage.sync.get('id', function (value) {
       }
     }).then(function (result) {
       console.log(result);
-      // setup the angular app
-      $('body').attr('ng-app', 'thedrunktest');
+
 
       if (result.data.success && result.data.drunkLevel > 0) {
-        // you're too drunk -> show overlay.
+      // you're too drunk -> show overlay.
         console.log("you pisshead! reading: " + result.data.value);
 
         // remove everything on page
         $('body').children().remove();
         $('link').remove();
 
-        var $compile = angular.injector(['ng']).get('$compile'),
-          $rootScope = angular.injector(['ng']).get('$rootScope'),
-          overlayElement = $compile('<div overlay=""></div>')($rootScope.$new());
-
-        // add our custom splash overlay
+        //add our custom splash overlay
         $('body').append(overlayElement);
       } else {
         // you're sober, congrats. tell them.
