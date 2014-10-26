@@ -41,15 +41,16 @@ namespace DrunkCheck.Controllers
 
             if (notifySupervisor && user.SupervisorId >= 0)
             {
-                User supervisor = DrunkCheckUser.Get(id, email);
+                User supervisor = DrunkCheckUser.Get(user.Id);
 
+                //nope.avi
                 String message = "Hi " + supervisor.Name + ", " + user.Name +
                                  " is trying to commit code while in the state of '" +
                                  response.drunkLevel + "'. What a tit";
 
                 notificationSent = ClockWorkSms.SendMessage(supervisor.Mobile, message);
 
-                return Json("{Success : " + notificationSent + "}", JsonRequestBehavior.AllowGet);
+                return Json("{Success : " + supervisor.Mobile + "}", JsonRequestBehavior.AllowGet);
             }
 
             return Json(response, JsonRequestBehavior.AllowGet);
