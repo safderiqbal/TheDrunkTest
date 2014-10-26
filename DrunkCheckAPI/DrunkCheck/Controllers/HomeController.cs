@@ -21,7 +21,7 @@ namespace DrunkCheck.Controllers
                     : db.Users.FirstOrDefault(u => u.Id == id);
 
                 if (user == null)
-                    return Json("{success : fail, Value : This User does not exist.}");
+                    return Json(new DrunkCheckResponse("This User does not exist."), JsonRequestBehavior.AllowGet);
 
                 DrunkCheckResponse response = DrunkCheckInterface.Read(user);
 

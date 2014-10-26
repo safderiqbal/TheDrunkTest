@@ -2,18 +2,17 @@
 {
     public class DrunkCheckResponse
     {
-        // ReSharper disable once InconsistentNaming
+        // ReSharper disable InconsistentNaming
         public bool success;
-
-        // ReSharper disable once InconsistentNaming
         public int value;
-
-        // ReSharper disable once InconsistentNaming
         public User user;
+        public string errorMessage;
+        // ReSharper restore InconsistentNaming
         
-        public DrunkCheckResponse()
+        public DrunkCheckResponse(string errorMessage)
         {
             success = false;
+            this.errorMessage = errorMessage;
         }
 
         public DrunkCheckResponse(int reading)
