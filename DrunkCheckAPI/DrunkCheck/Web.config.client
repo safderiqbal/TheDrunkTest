@@ -6,6 +6,8 @@
   </configSections>
   <appSettings>
     <add key="ComPort" value="COM3" />
+    <add key="ClockWorkSMSAPIKey" value="" />
+    <add key="OneDiaryAPIKey" value="" />
   </appSettings>
   <system.web>
     <authentication mode="None" />
@@ -27,10 +29,20 @@
         <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
         <bindingRedirect oldVersion="1.0.0.0-5.2.2.0" newVersion="5.2.2.0" />
       </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
     </assemblyBinding>
   </runtime>
   <system.webServer>
     <modules runAllManagedModulesForAllRequests="true"></modules>
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <remove name="OPTIONSVerbHandler" />
+      <remove name="TRACEVerbHandler" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
   </system.webServer>
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
@@ -43,6 +55,6 @@
     </providers>
   </entityFramework>
   <connectionStrings>
-    <add name="DrunkChecker" providerName="System.Data.SqlClient" connectionString="Server=tcp:tb54f5d70x.database.windows.net,1433;Database=DrunkChecker;User ID=Babel@tb54f5d70x;Password=ThatsRightMatrix1;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;"/>
+    <add name="DrunkChecker" providerName="System.Data.SqlClient" connectionString="Server=tcp:tb54f5d70x.database.windows.net,1433;Database=DrunkChecker;User ID=Babel@tb54f5d70x;Password=ThatsRightMatrix1;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" />
   </connectionStrings>
 </configuration>

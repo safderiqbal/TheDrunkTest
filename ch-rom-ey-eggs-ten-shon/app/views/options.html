@@ -6,11 +6,11 @@
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css styles/main.css -->
-        <link href="styles/main.css" rel="stylesheet">
+        <link href="../styles/main.css" rel="stylesheet">
         <!-- endbuild -->
     </head>
     <body>
-        <h1>'Allo, 'Allo!</h1>
+        <h1>The Drunk Test: Config Page</h1>
                 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
@@ -18,7 +18,20 @@
         <!-- endbuild -->
 
         <!-- build:js scripts/options.js -->
-        <script src="scripts/options.js"></script>
+        <script src="../bower_components/angularjs/angular.js"></script>
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../scripts/options.js"></script>
         <!-- endbuild -->
+    <div ng-app="app" ng-controller="options">
+        Name: <input id="name" ng-model="name" />
+      <br/>
+      <br/>
+        Email: <input id="email" type="email" ng-model="email"/>
+      <br/>
+      <br/>
+      <button ng-click="save()">save</button>
+      Id: <div style="display:inline">{{id}}</div>
+    </div>
+
     </body>
 </html>
