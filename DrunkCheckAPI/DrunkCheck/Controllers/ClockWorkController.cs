@@ -8,7 +8,7 @@ namespace DrunkCheck.Controllers
         public JsonResult ClockworkTest()
         {
             bool success = ClockWorkSms.SendTestMessage();
-            return Json("{success: " + success.ToString().ToLower() + "}", JsonRequestBehavior.AllowGet);
+            return Json(new {success}, JsonRequestBehavior.AllowGet);
         }
     }
 }
