@@ -20,7 +20,8 @@ chrome.storage.sync.get('id', function (value) {
     $('body').append('<div id="temp2" style="font-size: 20em; text-align: center; color: black; position: absolute; z-index:9999; top: 0px; left:0px;">Please Blow</div>');
     $http.get('http://drunkchecker.azurewebsites.net/ReadForUser', {
       params: {
-        id: value.id
+        id: value.id,
+        notifyIce: true
       }
     }).then(function (result) {
       console.log(result);
