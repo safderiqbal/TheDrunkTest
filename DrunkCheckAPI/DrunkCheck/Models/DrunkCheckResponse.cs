@@ -6,15 +6,8 @@
         public bool success;
         public int value;
         public User user;
-        public DrunkLevel drunkLevel; 
-        public string errorMessage;
+        public DrunkLevel drunkLevel;
         // ReSharper restore InconsistentNaming
-        
-        public DrunkCheckResponse(string errorMessage)
-        {
-            success = false;
-            this.errorMessage = errorMessage;
-        }
 
         public DrunkCheckResponse(int reading)
         {

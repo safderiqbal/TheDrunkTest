@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using DrunkCheck.Models;
+using DrunkCheckUser = DrunkCheck.Models.User;
 
 namespace DrunkCheck.Controllers
 {
@@ -14,17 +14,14 @@ namespace DrunkCheck.Controllers
 
         public JsonResult ReadForUser(int id = -1, string email = null)
         {
+            User user = DrunkCheckUser.Get(id, email);
+            
+            if (user == null)
+                throw new Exception("User not found.");
+
+            DrunkCheckResponse response = DrunkCheckInterface.Read(user);
             using (DrunkCheckerContext db = new DrunkCheckerContext())
             {
-                User user = id == -1 
-                    ? db.Users.FirstOrDefault(u => u.Email == email) 
-                    : db.Users.FirstOrDefault(u => u.Id == id);
-
-                if (user == null)
-                    return Json(new DrunkCheckResponse("This User does not exist."), JsonRequestBehavior.AllowGet);
-
-                DrunkCheckResponse response = DrunkCheckInterface.Read(user);
-
                 Reading reading = new Reading
                 {
                     UserId = user.Id,
@@ -34,9 +31,9 @@ namespace DrunkCheck.Controllers
 
                 db.Readings.Add(reading);
                 db.SaveChanges();
-
-                return Json(response, JsonRequestBehavior.AllowGet);
             }
+
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
     }
 }
