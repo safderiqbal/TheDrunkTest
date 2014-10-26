@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using DrunkCheck.APIs;
 using DrunkCheck.Models;
 using DrunkCheckUser = DrunkCheck.Models.User;
@@ -37,25 +38,10 @@ namespace DrunkCheck.Controllers
         public bool SmsRead(string from, string email)
         {
             User user = GetUser(from, email);
-
-            Reading reading;
-
-            DrunkCheckResponse response = DrunkCheckInterface.Read(user);
-            using (DrunkCheckerContext db = new DrunkCheckerContext())
-            {
-                reading = new Reading
-                {
-                    UserId = user.Id,
-                    DateTime = DateTime.Now,
-                    Value = response.value
-                };
-
-                db.Readings.Add(reading);
-                db.SaveChanges();
-            }
+            DrunkCheckResponse response = DrunkHelpers.Read(user);
 
             ClockWorkSms.SendMessage(from,
-                "You read a value of " + reading.Value +
+                "You read a value of " + response.value +
                 ", which must mean you are Drunk Level '" + response.drunkLevel + "'");
 
             return true;
@@ -63,16 +49,16 @@ namespace DrunkCheck.Controllers
 
         public bool SmsDonate(string from, string email)
         {
-            DrunkDonate.Donate(GetUser(from, email));
+            DrunkHelpers.Donate(GetUser(from, email));
             return true;
         }
 
         private static User GetUser(string from, string email)
         {
             User user = null;
-            if (email.Trim() != "")
+            if (email.Trim().IsEmpty())
             {
-                user = DrunkCheckUser.Get(-1, email);
+                user = DrunkCheckUser.Get(email: email);
             }
 
             if (user == null)
