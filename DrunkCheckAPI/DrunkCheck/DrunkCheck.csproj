@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DrunkCheckResponse.cs" />
+    <Compile Include="Models\DrunkDonate.cs" />
     <Compile Include="Models\DrunkStripe.cs" />
     <Compile Include="Models\Reading.cs" />
     <Compile Include="Models\User.cs" />

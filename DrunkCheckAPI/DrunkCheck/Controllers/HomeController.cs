@@ -59,18 +59,7 @@ namespace DrunkCheck.Controllers
         public JsonResult Donate(int id = -1, string email = null)
         {
             User user = DrunkCheckUser.Get(id, email);
-
-            if (user == null)
-                throw new Exception("User not found.");
-
-            DrunkStripe.PayRandomCharity(user);
-
-            using (DrunkCheckerContext db = new DrunkCheckerContext())
-            {
-                user.OverrideEnabled = true;
-                db.SaveChanges();
-            }
-
+            DrunkDonate.Donate(user);
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
     }

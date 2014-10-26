@@ -63,7 +63,7 @@ namespace DrunkCheck.Controllers
 
         public bool SmsDonate(string from, string email)
         {
-            DrunkStripe.PayRandomCharity(GetUser(from, email));
+            DrunkDonate.Donate(GetUser(from, email));
             return true;
         }
 
