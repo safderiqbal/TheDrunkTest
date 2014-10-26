@@ -33,9 +33,9 @@ data = {
 
 result = json.loads(consume_request('/ReadForUser', data))
 
-print result
-
 if result['drunkLevel'] >= 3:  # drunk or higher
     if not result['user']['OverrideEnabled']:  # without the override enabled
+        print "Sleep it off drunky!"
         sys.exit(1)  # not allowed
+print "Okay. I'll allow it"
 sys.exit(0)  # allowed
