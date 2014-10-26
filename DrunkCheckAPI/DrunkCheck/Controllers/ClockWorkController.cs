@@ -16,7 +16,30 @@ namespace DrunkCheck.Controllers
 
         public JsonResult ReceiveSms(string to, string from, string content, string keyword)
         {
-            string email = content.Substring(11);
+            string realContent = content.Substring(11);
+
+            string action = realContent.Trim().Substring(0, realContent.IndexOf("", System.StringComparison.Ordinal) + 1);
+            string actionValue =
+                realContent.Trim()
+                    .Substring(realContent.IndexOf("", System.StringComparison.Ordinal) + 1, realContent.Length);
+
+            bool result = false;
+
+            if (action.Equals("read", StringComparison.InvariantCultureIgnoreCase))
+            {
+               result = smsRead(from, actionValue);
+            }
+
+            if (action.Equals("donate", StringComparison.InvariantCultureIgnoreCase))
+            {
+                result = smsDonate();
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public bool smsRead(string from, string email)
+        {
             User user = null;
             if (email.Trim() != "")
             {
@@ -26,7 +49,7 @@ namespace DrunkCheck.Controllers
             if (user == null)
             {
                 ClockWorkSms.SendMessage(from, "Sorry but the that user has not been found. Blame Jeff");
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return false;
             }
 
             Reading reading;
@@ -46,10 +69,15 @@ namespace DrunkCheck.Controllers
             }
 
             ClockWorkSms.SendMessage(from,
-                "You read a value of " + reading.Value + 
-                ", which must mean you are Drunk Level '" + response.drunkLevel);
+                "You read a value of " + reading.Value +
+                ", which must mean you are Drunk Level '" + response.drunkLevel + "'");
 
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return true;
+        }
+
+        public bool smsDonate()
+        {
+            return true;
         }
     }
 }
