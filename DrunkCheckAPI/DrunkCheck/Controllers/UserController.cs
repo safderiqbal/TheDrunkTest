@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DrunkCheck.Models;
+using DrunkCheckUser = DrunkCheck.Models.User;
 
 namespace DrunkCheck.Controllers
 {
@@ -30,20 +29,7 @@ namespace DrunkCheck.Controllers
 
         public JsonResult GetUser(int userId = -1, string email = null)
         {
-
-            if (userId == -1 && email == null)
-            {
-                return Json("{success : false}", JsonRequestBehavior.AllowGet);
-            }
-
-            User user;
-            using (DrunkCheckerContext db = new DrunkCheckerContext())
-            {
-                user = userId != -1 ? db.Users.FirstOrDefault(u => u.Id == userId) : db.Users.FirstOrDefault(u => u.Email == email);
-                
-            }
-
-            return Json(user, JsonRequestBehavior.AllowGet);
+            return Json(DrunkCheckUser.Get(userId, email), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetResultsForUser(int userId)
