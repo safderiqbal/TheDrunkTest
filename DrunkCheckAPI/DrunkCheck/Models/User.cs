@@ -17,6 +17,14 @@ namespace DrunkCheck.Models
 
         public string Mobile { get; set; }
 
+        public string CardCvc { get; set; }
+
+        public string CardExpirationMonth { get; set; }
+
+        public string CardExpirationYear { get; set; }
+
+        public string CardNumber { get; set; }
+
         public static User Get(int userId = -1, string email = null)
         {
             if (userId == -1 && email == null)

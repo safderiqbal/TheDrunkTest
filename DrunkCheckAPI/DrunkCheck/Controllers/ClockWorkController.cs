@@ -16,18 +16,27 @@ namespace DrunkCheck.Controllers
 
         public JsonResult ReceiveSms(string to, string from, string content, string keyword)
         {
-            string email = content.Substring(11);
-            User user = null;
-            if (email.Trim() != "")
+            string action = content.Substring(0, content.IndexOf(" ", StringComparison.Ordinal) + 1);
+            string actionValue = content.Substring(content.IndexOf(" ", StringComparison.Ordinal) + 1);
+
+            bool result = false;
+
+            if (action.Trim().Equals("read", StringComparison.InvariantCultureIgnoreCase))
             {
-                user = DrunkCheckUser.Get(-1, email);
+               result = SmsRead(from, actionValue);
             }
 
-            if (user == null)
+            if (action.Trim().Equals("donate", StringComparison.InvariantCultureIgnoreCase))
             {
-                ClockWorkSms.SendMessage(from, "Sorry but the that user has not been found. Blame Jeff");
-                return Json(false, JsonRequestBehavior.AllowGet);
+                result = SmsDonate(from, actionValue);
             }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public bool SmsRead(string from, string email)
+        {
+            User user = GetUser(from, email);
 
             Reading reading;
 
@@ -46,10 +55,33 @@ namespace DrunkCheck.Controllers
             }
 
             ClockWorkSms.SendMessage(from,
-                "You read a value of " + reading.Value + 
-                ", which must mean you are Drunk Level '" + response.drunkLevel);
+                "You read a value of " + reading.Value +
+                ", which must mean you are Drunk Level '" + response.drunkLevel + "'");
 
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return true;
+        }
+
+        public bool SmsDonate(string from, string email)
+        {
+            DrunkDonate.Donate(GetUser(from, email));
+            return true;
+        }
+
+        private static User GetUser(string from, string email)
+        {
+            User user = null;
+            if (email.Trim() != "")
+            {
+                user = DrunkCheckUser.Get(-1, email);
+            }
+
+            if (user == null)
+            {
+                ClockWorkSms.SendMessage(from, "Sorry but the that user has not been found. Blame Jeff");
+                throw new Exception("Sorry but the that user has not been found. Blame Jeff");
+            }
+
+            return user;
         }
     }
 }

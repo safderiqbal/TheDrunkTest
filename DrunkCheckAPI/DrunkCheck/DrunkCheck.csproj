@@ -53,6 +53,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Stripe.net, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Stripe.net.2.3.0\lib\net40\Stripe.net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -113,6 +117,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410260418566_test2.cs" />
+    <Compile Include="Migrations\201410260418566_test2.Designer.cs">
+      <DependentUpon>201410260418566_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410260751152_test3.cs" />
+    <Compile Include="Migrations\201410260751152_test3.Designer.cs">
+      <DependentUpon>201410260751152_test3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Charity.cs" />
     <Compile Include="Models\DrunkCheckInterface.cs" />
     <Compile Include="Migrations\201410251836146_InitialCreate.cs" />
     <Compile Include="Migrations\201410251836146_InitialCreate.Designer.cs">
@@ -128,6 +141,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DrunkCheckResponse.cs" />
+    <Compile Include="Models\DrunkDonate.cs" />
+    <Compile Include="Models\DrunkStripe.cs" />
     <Compile Include="Models\Reading.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -153,7 +168,6 @@
     <None Include="Properties\PublishProfiles\DrunkChecker.pubxml" />
     <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <Content Include="WebSocketHttpHandler.ashx" />
-    <None Include="Web.config.client" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -171,12 +185,21 @@
     <EmbeddedResource Include="Migrations\201410252121451_test1.resx">
       <DependentUpon>201410252121451_test1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410260418566_test2.resx">
+      <DependentUpon>201410260418566_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410260751152_test3.resx">
+      <DependentUpon>201410260751152_test3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\APIs\ThirdPartyAPIs.csproj">
       <Project>{2bc62885-9ec3-4797-9070-684c5fc6d9c0}</Project>
       <Name>ThirdPartyAPIs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
