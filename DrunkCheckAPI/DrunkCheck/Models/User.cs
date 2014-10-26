@@ -25,6 +25,8 @@ namespace DrunkCheck.Models
 
         public string CardNumber { get; set; }
 
+        public string EmergancyContact { get; set; }
+
         public static User Get(int userId = -1, string email = null)
         {
             if (userId == -1 && email == null)
