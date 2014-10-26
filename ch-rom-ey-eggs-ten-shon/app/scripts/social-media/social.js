@@ -20,7 +20,7 @@ chrome.storage.sync.get('id', function (value) {
       }
     }).then(function (result) {
       console.log(result);
-      if (result.data.success && result.data.drunkLevel > 2) {
+      if (result.data.success /*&& result.data.drunkLevel > 1*/) {
         //you're too drunk -> show youtube vid.
         console.log("you pisshead! reading: " + result.data.value);
         var $uTub = ('<iframe width="470" height="315" src="//www.youtube.com/embed/gvdf5n-zI14" frameborder="0" allowfullscreen></iframe>');
