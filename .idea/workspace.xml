@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b272aeec-7295-49fc-bcbd-f389bf931bec" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ch-rom-ey-eggs-ten-shon/app/scripts/banking/banking.js" afterPath="$PROJECT_DIR$/ch-rom-ey-eggs-ten-shon/app/scripts/banking/banking.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ch-rom-ey-eggs-ten-shon/app/manifest.json" afterPath="$PROJECT_DIR$/ch-rom-ey-eggs-ten-shon/app/manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ch-rom-ey-eggs-ten-shon/app/scripts/social-media/social.js" afterPath="$PROJECT_DIR$/ch-rom-ey-eggs-ten-shon/app/scripts/social-media/social.js" />
     </list>
     <ignored path="HackManchester2014.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,11 +29,11 @@
       <file leaf-file-name="banking.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ch-rom-ey-eggs-ten-shon/app/scripts/banking/banking.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.298995" vertical-offset="0" max-vertical-offset="1003">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.91457283" vertical-offset="554" max-vertical-offset="1020">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding>
-                <marker date="1414315078925" expanded="false" signature="362:472" placeholder="..." />
-                <marker date="1414315078925" expanded="false" signature="529:633" placeholder="..." />
+                <marker date="1414315809106" expanded="true" signature="620:730" placeholder="..." />
+                <marker date="1414315809106" expanded="true" signature="787:891" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -531,9 +529,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28384992" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Grunt" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28384992" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3050571" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -600,8 +598,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="177" max-vertical-offset="1003">
           <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
           <folding>
-            <marker date="1414315078925" expanded="false" signature="362:472" placeholder="..." />
-            <marker date="1414315078925" expanded="false" signature="529:633" placeholder="..." />
+            <marker date="1414315809106" expanded="true" signature="620:730" placeholder="..." />
+            <marker date="1414315809106" expanded="true" signature="787:891" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -801,11 +799,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ch-rom-ey-eggs-ten-shon/app/scripts/banking/banking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.298995" vertical-offset="0" max-vertical-offset="1003">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.91457283" vertical-offset="554" max-vertical-offset="1020">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding>
-            <marker date="1414315078925" expanded="false" signature="362:472" placeholder="..." />
-            <marker date="1414315078925" expanded="false" signature="529:633" placeholder="..." />
+            <marker date="1414315809106" expanded="true" signature="620:730" placeholder="..." />
+            <marker date="1414315809106" expanded="true" signature="787:891" placeholder="..." />
           </folding>
         </state>
       </provider>
