@@ -14,7 +14,7 @@ namespace DrunkCheck.Controllers
             return Json(DrunkCheckInterface.Read(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ReadForUser(int id = -1, string email = null, bool notifySupervisor = false)
+        public JsonResult ReadForUser(int id = -1, string email = null, bool notifySupervisor = false, bool textSelf = false)
         {
             User user = DrunkCheckUser.Get(id, email);
             
@@ -50,7 +50,7 @@ namespace DrunkCheck.Controllers
 
                 notificationSent = ClockWorkSms.SendMessage(supervisor.Mobile, message);
             }
-
+            
             return Json(response, JsonRequestBehavior.AllowGet);
         }
     }

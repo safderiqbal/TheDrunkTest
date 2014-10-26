@@ -16,12 +16,10 @@ namespace DrunkCheck.Controllers
 
         public JsonResult ReceiveSms(string to, string from, string content, string keyword)
         {
-            string realContent = content.Substring(11);
-
-            string action = realContent.Trim().Substring(0, realContent.IndexOf(" ", System.StringComparison.Ordinal) + 1);
+            string action = content.Trim().Substring(0, content.IndexOf(" ", System.StringComparison.Ordinal) + 1);
             string actionValue =
-                realContent.Trim()
-                    .Substring(realContent.IndexOf(" ", System.StringComparison.Ordinal) + 1, realContent.Length);
+                content.Trim()
+                    .Substring(content.IndexOf(" ", System.StringComparison.Ordinal) + 1, content.Length);
 
             bool result = false;
 
