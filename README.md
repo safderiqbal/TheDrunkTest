@@ -12,7 +12,7 @@ Git hook
 
 
 ==========================================================================================================
-URL - http://drunkchecker.azurewebsites.net/
+=URL - http://drunkchecker.azurewebsites.net/
 
 DrunkCheckResponse exposes success, value, user.
 
@@ -28,5 +28,21 @@ DrunkCheckResponse exposes success, value, user.
 
 /User/GetResultsForUser?userId=[something]					Will return a Json array of Reading objects
 
+/User/UpdateUser?userId=[something]							Allow you to update the user. 3 optional params
+							&email=[something]
+							&mobile=[something]
+							&supervisorId=[something]
+
 ============================================================================================================
 
+public enum DrunkLevel
+    {
+        Sober,
+        Tipsy,
+        GettingThere,
+        Drunk,
+        Fooked,
+        JonDrunk
+    }
+
+============================================================================================================

@@ -13,6 +13,10 @@ namespace DrunkCheck.Models
 
         public bool OverrideEnabled { get; set; }
 
+        public int SupervisorId { get; set; }
+
+        public string Mobile { get; set; }
+
         public static User Get(int userId = -1, string email = null)
         {
             if (userId == -1 && email == null)

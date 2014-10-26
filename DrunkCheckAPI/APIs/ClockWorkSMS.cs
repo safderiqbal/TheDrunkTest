@@ -11,14 +11,14 @@ namespace DrunkCheck.APIs
     {
         private static readonly string ApiKey = ConfigurationManager.AppSettings.Get("ClockWorkSMSAPIKey");
 
-        public static bool SendMessage(int receiverNumber, string message)
+        public static bool SendMessage(string receiverNumber, string message)
         {
             API api = new API(ApiKey);
             try
             {
                 SMSResult result = api.Send(
                     new SMS {
-                        To = receiverNumber.ToString(CultureInfo.InvariantCulture),
+                        To = receiverNumber,
                         Message = message
                     }
                 );
