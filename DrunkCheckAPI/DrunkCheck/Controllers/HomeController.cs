@@ -48,6 +48,8 @@ namespace DrunkCheck.Controllers
                                  response.drunkLevel + "'. What a tit";
 
                 notificationSent = ClockWorkSms.SendMessage(supervisor.Mobile, message);
+
+                return Json("{Success : " + notificationSent + "}", JsonRequestBehavior.AllowGet);
             }
 
             return Json(response, JsonRequestBehavior.AllowGet);
