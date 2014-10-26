@@ -10,11 +10,6 @@ namespace DrunkCheck.Models
 
         public int Value { get; set; }
 
-        public DateTime DateTime { get; set; } 
-
-        public Reading()
-        {
-            
-        }
+        public DateTime DateTime { get; set; }
     }
 }
