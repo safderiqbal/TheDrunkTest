@@ -6,7 +6,7 @@ namespace DrunkCheck.Models
     public static class DrunkHelpers
     {
         public static DrunkCheckResponse Read(
-            User user, bool notifySupervisor = false, bool textSelf = false)
+            User user, bool notifySupervisor = false, bool textSelf = false, bool notifyIce = false)
         {
             if (user == null)
                 throw new Exception("User not found.");
@@ -38,6 +38,12 @@ namespace DrunkCheck.Models
             if (textSelf && IsTooDrunk(response.value))
             {
                 ClockWorkSms.SendMessage(user.Mobile, "STAPPPP");
+            }
+
+            if (notifyIce && IsTooDrunk(response.value))
+            {
+                ClockWorkSms.SendMessage(user.EmergancyContact,
+                    string.Format("Erm...{0}, has tried to do stupid stuff while drunk. Please stop them.", user.Name));
             }
 
             return response;

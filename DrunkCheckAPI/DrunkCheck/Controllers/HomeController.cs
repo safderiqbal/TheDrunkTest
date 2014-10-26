@@ -17,13 +17,7 @@ namespace DrunkCheck.Controllers
                                         bool notifySupervisor = false, bool textSelf = false, bool notifyIce = false)
         {
             User user = DrunkCheckUser.Get(id, email);
-            DrunkCheckResponse response = DrunkHelpers.Read(user, notifySupervisor, textSelf);
-            if (notifyIce && reading.Value > 400)
-            {
-                ClockWorkSms.SendMessage(user.EmergancyContact,
-                    string.Format("Erm...{0}, has tried to do stupid stuff while drunk. Please stop them."), user.Name);
-            }
-
+            DrunkCheckResponse response = DrunkHelpers.Read(user, notifySupervisor, textSelf, notifyIce);
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
