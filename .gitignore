@@ -1,4 +1,5 @@
 */.idea
+*.config
 
 #OS junk files
 [Tt]humbs.db
