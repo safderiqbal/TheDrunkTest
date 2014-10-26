@@ -1,8 +1,6 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using DrunkCheck.Models;
 using DrunkCheckUser = DrunkCheck.Models.User;
-using DrunkCheck.APIs;
 
 namespace DrunkCheck.Controllers
 {
