@@ -37,7 +37,7 @@ namespace DrunkCheck.Controllers
                 db.SaveChanges();
             }
 
-            bool notificationSent = false;
+            string notificationSent = "";
 
             if (notifySupervisor && user.SupervisorId >= 0)
             {

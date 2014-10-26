@@ -8,7 +8,7 @@ namespace DrunkCheck.Controllers
     {
         public JsonResult SendSms(string recipientNumber, string message)
         {
-            bool success = ClockWorkSms.SendMessage(recipientNumber, message);
+            bool success = (ClockWorkSms.SendMessage(recipientNumber, message) =="something");
             return Json(new {success}, JsonRequestBehavior.AllowGet);
         }
 

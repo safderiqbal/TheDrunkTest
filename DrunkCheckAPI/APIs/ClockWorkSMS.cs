@@ -11,7 +11,7 @@ namespace DrunkCheck.APIs
     {
         private static readonly string ApiKey = ConfigurationManager.AppSettings.Get("ClockWorkSMSAPIKey");
 
-        public static bool SendMessage(string receiverNumber, string message)
+        public static string SendMessage(string receiverNumber, string message)
         {
             API api = new API(ApiKey);
             try
@@ -26,34 +26,38 @@ namespace DrunkCheck.APIs
                 if (result.Success)
                 {
                     Debug.WriteLine("SMS Sent to {0}, Clockwork ID: {1}", result.SMS.To, result.ID);
-                    return true;
+                    //return true;
                 }
                 Debug.WriteLine("SMS to {0} failed, Clockwork Error: {1} {2}", result.SMS.To, result.ErrorCode, result.ErrorMessage);
-                return false;
+                return result.ErrorMessage;
             }
             catch (APIException ex)
             {
                 // You'll get an API exception for errors
                 // such as wrong username or password
                 Debug.WriteLine("API Exception: " + ex.Message);
+                return ex.Message;
             }
             catch (WebException ex)
             {
                 // Web exceptions mean you couldn't reach the Clockwork server
                 Debug.WriteLine("Web Exception: " + ex.Message);
+                return ex.Message;
             }
             catch (ArgumentException ex)
             {
                 // Argument exceptions are thrown for missing parameters,
                 // such as forgetting to set the username
                 Debug.WriteLine("Argument Exception: " + ex.Message);
+                return ex.Message;
             }
             catch (Exception ex)
             {
                 // Something else went wrong, the error message should help
                 Debug.WriteLine("Unknown Exception: " + ex.Message);
+                return ex.Message;
             }
-            return false;
+            return "hi";
         }
     }
 }
