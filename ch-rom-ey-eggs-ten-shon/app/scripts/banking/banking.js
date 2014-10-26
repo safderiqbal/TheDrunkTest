@@ -21,7 +21,7 @@ chrome.storage.sync.get('id', function (value) {
       // setup the angular app
       $('body').attr('ng-app', 'thedrunktest');
 
-      if (result.data.success && result.data.value > 100) {
+      if (result.data.success && result.data.drunkLevel > 0) {
         // you're too drunk -> show overlay.
         console.log("you pisshead! reading: " + result.data.value);
 
