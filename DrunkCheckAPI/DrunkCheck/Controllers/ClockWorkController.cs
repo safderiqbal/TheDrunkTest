@@ -18,27 +18,27 @@ namespace DrunkCheck.Controllers
         {
             string realContent = content.Substring(11);
 
-            string action = realContent.Trim().Substring(0, realContent.IndexOf("", System.StringComparison.Ordinal) + 1);
+            string action = realContent.Trim().Substring(0, realContent.IndexOf(" ", System.StringComparison.Ordinal) + 1);
             string actionValue =
                 realContent.Trim()
-                    .Substring(realContent.IndexOf("", System.StringComparison.Ordinal) + 1, realContent.Length);
+                    .Substring(realContent.IndexOf(" ", System.StringComparison.Ordinal) + 1, realContent.Length);
 
             bool result = false;
 
             if (action.Equals("read", StringComparison.InvariantCultureIgnoreCase))
             {
-               result = smsRead(from, actionValue);
+               result = SmsRead(from, actionValue);
             }
 
             if (action.Equals("donate", StringComparison.InvariantCultureIgnoreCase))
             {
-                result = smsDonate();
+                result = SmsDonate();
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public bool smsRead(string from, string email)
+        public bool SmsRead(string from, string email)
         {
             User user = null;
             if (email.Trim() != "")
@@ -75,7 +75,7 @@ namespace DrunkCheck.Controllers
             return true;
         }
 
-        public bool smsDonate()
+        public bool SmsDonate()
         {
             return true;
         }
