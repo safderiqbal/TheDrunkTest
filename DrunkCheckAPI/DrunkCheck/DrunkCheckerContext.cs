@@ -9,6 +9,8 @@ namespace DrunkCheck
 
         public DbSet<Reading> Readings { get; set; }
 
+        public DbSet<Charity> Charities { get; set; }
+
         public DrunkCheckerContext() : base("DrunkChecker")
         {
             

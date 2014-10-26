@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Web.Mvc;
 using DrunkCheck.Models;
 using DrunkCheckUser = DrunkCheck.Models.User;
