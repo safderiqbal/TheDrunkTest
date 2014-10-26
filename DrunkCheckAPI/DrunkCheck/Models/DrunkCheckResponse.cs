@@ -10,6 +10,9 @@
 
         // ReSharper disable once InconsistentNaming
         public User user;
+
+        // ReSharper disable once InconsistentNaming
+        public DrunkLevel drunkLevel; 
         
         public DrunkCheckResponse()
         {
@@ -19,6 +22,7 @@
         public DrunkCheckResponse(int reading)
         {
             value = reading;
+            drunkLevel = DrunkChecker.HowDrunk(reading);
             success = true;
         }
 
@@ -26,6 +30,7 @@
         {
             this.user = user;
             value = reading;
+            drunkLevel = DrunkChecker.HowDrunk(reading);
             success = true;
         }
     }
