@@ -11,7 +11,12 @@ namespace DrunkCheck.Models
 
         public string Email { get; set; }
 
-        public bool OverrideEnabled { get; set; }
+        public bool OverrideEnabled
+        {
+            get { return OverrideUntil > DateTime.Now; }
+        }
+
+        public DateTime OverrideUntil { get; set; }
 
         public int SupervisorId { get; set; }
 

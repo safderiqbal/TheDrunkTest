@@ -20,30 +20,33 @@ namespace DrunkCheck.Models
                     DateTime = DateTime.Now,
                     Value = response.value
                 });
+
                 db.SaveChanges();
             }
 
-            if (notifySupervisor && user.SupervisorId >= 0 && IsTooDrunk(response.value))
+            if (IsTooDrunk(response.value))
             {
-                User supervisor = User.Get(user.SupervisorId);
+                if (notifySupervisor && user.SupervisorId >= 0)
+                {
+                    User supervisor = User.Get(user.SupervisorId);
 
-                //nope.avi
-                String message = "Hi " + supervisor.Name + ", " + user.Name +
-                                 " is trying to commit code while in the state of '" +
-                                 response.drunkLevel + "'. What a tit";
+                    //nope.avi
+                    String message = "Hi " + supervisor.Name + ", " + user.Name +
+                                     " is trying to commit code while in the state of '" +
+                                     response.drunkLevel + "'. What a tit";
 
-                ClockWorkSms.SendMessage(supervisor.Mobile, message);
-            }
+                    ClockWorkSms.SendMessage(supervisor.Mobile, message);
+                }
 
-            if (textSelf && IsTooDrunk(response.value))
-            {
-                ClockWorkSms.SendMessage(user.Mobile, "STAPPPP");
-            }
+                if (textSelf)
+                    ClockWorkSms.SendMessage(user.Mobile, "STAPPPP");
 
-            if (notifyIce && IsTooDrunk(response.value))
-            {
-                ClockWorkSms.SendMessage(user.EmergancyContact,
-                    string.Format("Erm...{0}, has tried to do stupid stuff while drunk. Please stop them.", user.Name));
+                if (notifyIce)
+                {
+                    ClockWorkSms.SendMessage(user.EmergancyContact,
+                        string.Format("Erm...{0}, has tried to do stupid stuff while drunk. Please stop them.",
+                            user.Name));
+                }
             }
 
             return response;
@@ -58,7 +61,7 @@ namespace DrunkCheck.Models
 
             using (DrunkCheckerContext db = new DrunkCheckerContext())
             {
-                user.OverrideEnabled = true;
+                user.OverrideUntil = DateTime.Now.AddHours(1);
                 db.SaveChanges();
             }
         }
