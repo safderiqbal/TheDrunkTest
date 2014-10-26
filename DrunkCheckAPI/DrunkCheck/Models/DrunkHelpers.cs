@@ -60,13 +60,13 @@ namespace DrunkCheck.Models
                     //nope.avi
                     String message = string.Format(
                         "Hi {0}, {1} is trying to commit code while in the state of '{2}'. What a {3}",
-                    supervisor.Name, user.Name, response.drunkLevel, Insults.GetValue(Random.Next() * Insults.Length));
+                    supervisor.Name, user.Name, response.drunkLevel, Insults.GetValue(Random.Next(Insults.Length - 1)));
 
                     ClockWorkSms.SendMessage(supervisor.Mobile, message);
                 }
 
                 if (textSelf)
-                    ClockWorkSms.SendMessage(user.Mobile, StopSayings.GetValue(Random.Next() * StopSayings.Length).ToString());
+                    ClockWorkSms.SendMessage(user.Mobile, StopSayings.GetValue(Random.Next(StopSayings.Length - 1)).ToString());
 
                 if (notifyIce)
                 {
@@ -76,6 +76,18 @@ namespace DrunkCheck.Models
             }
 
             return response;
+        }
+
+        public static void Override(User user)
+        {
+            if (user == null)
+                throw new Exception("User not found.");
+
+            using (DrunkCheckerContext db = new DrunkCheckerContext())
+            {
+                user.OverrideUntil = DateTime.Now.AddHours(1);
+                db.SaveChanges();
+            }
         }
 
         public static void Donate(User user)

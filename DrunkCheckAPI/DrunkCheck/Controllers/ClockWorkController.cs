@@ -32,6 +32,11 @@ namespace DrunkCheck.Controllers
                 result = SmsDonate(from, actionValue);
             }
 
+            if (action.Trim().Equals("override", StringComparison.InvariantCultureIgnoreCase))
+            {
+                result = SmsOverride(from, actionValue);
+            }
+
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -44,6 +49,12 @@ namespace DrunkCheck.Controllers
                 "You read a value of " + response.value +
                 ", which must mean you are Drunk Level '" + response.drunkLevel + "'");
 
+            return true;
+        }
+
+        public bool SmsOverride(string from, string email)
+        {
+            DrunkHelpers.Override(GetUser(from, email));
             return true;
         }
 

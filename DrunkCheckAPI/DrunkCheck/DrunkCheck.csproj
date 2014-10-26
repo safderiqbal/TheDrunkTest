@@ -125,6 +125,10 @@
     <Compile Include="Migrations\201410260751152_test3.Designer.cs">
       <DependentUpon>201410260751152_test3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410261024506_test4.cs" />
+    <Compile Include="Migrations\201410261024506_test4.Designer.cs">
+      <DependentUpon>201410261024506_test4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Charity.cs" />
     <Compile Include="Models\DrunkCheckInterface.cs" />
     <Compile Include="Migrations\201410251836146_InitialCreate.cs" />
@@ -190,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410260751152_test3.resx">
       <DependentUpon>201410260751152_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410261024506_test4.resx">
+      <DependentUpon>201410261024506_test4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

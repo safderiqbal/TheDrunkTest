@@ -12,11 +12,18 @@ namespace DrunkCheck.Controllers
         }
 
         public JsonResult ReadForUser(int id = -1, string email = null, 
-                                        bool notifySupervisor = false, bool textSelf = false, bool notifyIce = false)
+            bool notifySupervisor = false, bool textSelf = false, bool notifyIce = false)
         {
             User user = DrunkCheckUser.Get(id, email);
             DrunkCheckResponse response = DrunkHelpers.Read(user, notifySupervisor, textSelf, notifyIce);
             return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Override(int id = -1, string email = null)
+        {
+            User user = DrunkCheckUser.Get(id, email);
+            DrunkHelpers.Override(user);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Donate(int id = -1, string email = null)
