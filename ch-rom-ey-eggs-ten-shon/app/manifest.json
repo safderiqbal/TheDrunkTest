@@ -41,12 +41,19 @@
       "all_frames": false
     },
     {
-      "matches": ["*://*.facebook.com/*"],
+      "matches": [
+        "*://*.facebook.com/*",
+        "*://twitter.com/*"
+      ],
       "css": [
-        "styles/main.css"
+        "styles/main.css",
+        "styles/clippy.css"
       ],
       "js": [
-        "scripts/social-media/facebook.js"
+        "bower_components/angularjs/angular.js",
+        "bower_components/jquery/dist/jquery.js",
+        "scripts/social-media/clippy.js",
+        "scripts/social-media/social.js"
       ],
       "run_at": "document_end",
       "all_frames": false
