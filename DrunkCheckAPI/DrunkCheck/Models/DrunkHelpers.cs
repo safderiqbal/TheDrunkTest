@@ -24,7 +24,7 @@ namespace DrunkCheck.Models
                 db.SaveChanges();
             }
 
-            if (IsTooDrunk(response.value))
+            if (response.isTooDrunk)
             {
                 if (notifySupervisor && user.SupervisorId >= 0)
                 {
@@ -64,11 +64,6 @@ namespace DrunkCheck.Models
                 user.OverrideUntil = DateTime.Now.AddHours(1);
                 db.SaveChanges();
             }
-        }
-
-        private static bool IsTooDrunk(int value)
-        {
-            return value > 400;
         }
     }
 }

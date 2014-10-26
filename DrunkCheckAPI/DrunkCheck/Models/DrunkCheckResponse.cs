@@ -9,6 +9,8 @@
         public DrunkLevel drunkLevel;
         // ReSharper restore InconsistentNaming
 
+        public bool isTooDrunk { get { return value > 400; } }
+
         public DrunkCheckResponse(int reading)
         {
             value = reading;
