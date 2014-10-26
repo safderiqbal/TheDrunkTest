@@ -39,9 +39,9 @@ namespace DrunkCheck.Controllers
 
             string notificationSent = "";
 
-            if (notifySupervisor && user.SupervisorId >= 0)
+            if (notifySupervisor && user.SupervisorId >= 0 && reading.Value > 400)
             {
-                User supervisor = DrunkCheckUser.Get(user.Id);
+                User supervisor = DrunkCheckUser.Get(user.SupervisorId);
 
                 //nope.avi
                 String message = "Hi " + supervisor.Name + ", " + user.Name +
