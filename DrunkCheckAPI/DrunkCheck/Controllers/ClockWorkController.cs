@@ -6,7 +6,7 @@ namespace DrunkCheck.Controllers
 {
     public class ClockWorkController : Controller
     {
-        public JsonResult SendSms(int recipientNumber, string message)
+        public JsonResult SendSms(string recipientNumber, string message)
         {
             bool success = ClockWorkSms.SendMessage(recipientNumber, message);
             return Json(new {success}, JsonRequestBehavior.AllowGet);
@@ -14,7 +14,7 @@ namespace DrunkCheck.Controllers
 
         public JsonResult ReceiveSms(string to, string from, string content, string keyword)
         {
-            ClockWorkSms.SendMessage(Convert.ToInt32(from), content);
+            ClockWorkSms.SendMessage(from, content);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
     }

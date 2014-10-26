@@ -37,6 +37,8 @@ namespace DrunkCheck.Controllers
                 db.SaveChanges();
             }
 
+            bool notificationSent = false;
+
             if (notifySupervisor && user.SupervisorId >= 0)
             {
                 User supervisor = DrunkCheckUser.Get(id, email);
@@ -45,7 +47,7 @@ namespace DrunkCheck.Controllers
                                  " is trying to commit code while in the state of '" +
                                  response.drunkLevel + "'. What a tit";
 
-                return ClockWorkSms.SendSms(supervisor.Mobile, message);
+                notificationSent = ClockWorkSms.SendMessage(supervisor.Mobile, message);
             }
 
             return Json(response, JsonRequestBehavior.AllowGet);
