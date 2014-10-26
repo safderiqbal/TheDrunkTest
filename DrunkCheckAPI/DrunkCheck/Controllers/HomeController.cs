@@ -50,7 +50,12 @@ namespace DrunkCheck.Controllers
 
                 notificationSent = ClockWorkSms.SendMessage(supervisor.Mobile, message);
             }
-            
+
+            if (textSelf && reading.Value > 400)
+            {
+                ClockWorkSms.SendMessage(user.Mobile, "STAPPPP");
+            }
+
             return Json(response, JsonRequestBehavior.AllowGet);
         }
     }
