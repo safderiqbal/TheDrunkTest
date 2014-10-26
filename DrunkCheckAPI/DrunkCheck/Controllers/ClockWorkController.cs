@@ -16,19 +16,17 @@ namespace DrunkCheck.Controllers
 
         public JsonResult ReceiveSms(string to, string from, string content, string keyword)
         {
-            string action = content.Trim().Substring(0, content.IndexOf(" ", System.StringComparison.Ordinal) + 1);
-            string actionValue =
-                content.Trim()
-                    .Substring(content.IndexOf(" ", System.StringComparison.Ordinal) + 1, content.Length);
+            string action = content.Substring(0, content.IndexOf(" ", StringComparison.Ordinal) + 1);
+            string actionValue = content.Substring(content.IndexOf(" ", StringComparison.Ordinal) + 1);
 
             bool result = false;
 
-            if (action.Equals("read", StringComparison.InvariantCultureIgnoreCase))
+            if (action.Trim().Equals("read", StringComparison.InvariantCultureIgnoreCase))
             {
                result = SmsRead(from, actionValue);
             }
 
-            if (action.Equals("donate", StringComparison.InvariantCultureIgnoreCase))
+            if (action.Trim().Equals("donate", StringComparison.InvariantCultureIgnoreCase))
             {
                 result = SmsDonate();
             }
