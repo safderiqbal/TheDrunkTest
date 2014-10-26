@@ -36,8 +36,6 @@ namespace DrunkCheck.Controllers
                 db.SaveChanges();
             }
 
-            bool notificationSent = false;
-
             if (notifySupervisor && user.SupervisorId >= 0 && reading.Value > 400)
             {
                 User supervisor = DrunkCheckUser.Get(user.SupervisorId);
@@ -47,7 +45,7 @@ namespace DrunkCheck.Controllers
                                  " is trying to commit code while in the state of '" +
                                  response.drunkLevel + "'. What a tit";
 
-                notificationSent = ClockWorkSms.SendMessage(supervisor.Mobile, message);
+                ClockWorkSms.SendMessage(supervisor.Mobile, message);
             }
 
             if (textSelf && reading.Value > 400)
@@ -56,6 +54,24 @@ namespace DrunkCheck.Controllers
             }
 
             return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Donate(int id = -1, string email = null)
+        {
+            User user = DrunkCheckUser.Get(id, email);
+
+            if (user == null)
+                throw new Exception("User not found.");
+
+            DrunkStripe.PayRandomCharity(user);
+
+            using (DrunkCheckerContext db = new DrunkCheckerContext())
+            {
+                user.OverrideEnabled = true;
+                db.SaveChanges();
+            }
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
     }
 }

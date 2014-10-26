@@ -28,7 +28,7 @@ namespace DrunkCheck.Controllers
 
             if (action.Trim().Equals("donate", StringComparison.InvariantCultureIgnoreCase))
             {
-                result = SmsDonate();
+                result = SmsDonate(from, actionValue);
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -36,17 +36,7 @@ namespace DrunkCheck.Controllers
 
         public bool SmsRead(string from, string email)
         {
-            User user = null;
-            if (email.Trim() != "")
-            {
-                user = DrunkCheckUser.Get(-1, email);
-            }
-
-            if (user == null)
-            {
-                ClockWorkSms.SendMessage(from, "Sorry but the that user has not been found. Blame Jeff");
-                return false;
-            }
+            User user = GetUser(from, email);
 
             Reading reading;
 
@@ -71,9 +61,27 @@ namespace DrunkCheck.Controllers
             return true;
         }
 
-        public bool SmsDonate()
+        public bool SmsDonate(string from, string email)
         {
+            DrunkStripe.PayRandomCharity(GetUser(from, email));
             return true;
+        }
+
+        private static User GetUser(string from, string email)
+        {
+            User user = null;
+            if (email.Trim() != "")
+            {
+                user = DrunkCheckUser.Get(-1, email);
+            }
+
+            if (user == null)
+            {
+                ClockWorkSms.SendMessage(from, "Sorry but the that user has not been found. Blame Jeff");
+                throw new Exception("Sorry but the that user has not been found. Blame Jeff");
+            }
+
+            return user;
         }
     }
 }
